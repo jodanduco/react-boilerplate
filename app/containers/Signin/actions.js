@@ -9,6 +9,7 @@ import {
 } from './constants';
 
 export function signinUser({ email, password }) {
+  debugger
   return {
     type: SIGNIN_USER,
   };

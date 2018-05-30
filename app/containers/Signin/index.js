@@ -18,6 +18,7 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectSignin from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import  { signinUser } from './actions';
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div>
@@ -34,11 +35,11 @@ export class Signin extends React.Component { // eslint-disable-line react/prefe
   handleFormSubmit({_root: { entries} }) {
     const [ [, email], [, password] ] = entries;
     console.log(email, password);
+    this.props.onSigninUser({email, password});
     
   }
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
-    //debugger
     return (
       <div>
         <Helmet>
@@ -87,9 +88,9 @@ const mapStateToProps = createStructuredSelector({
   signin: makeSelectSignin(),
 });
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    onSigninUser: ({ email, password }) => dispatch(signinUser({ email, password })),
   };
 }
 
