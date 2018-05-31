@@ -35,8 +35,9 @@ export class Signin extends React.Component { // eslint-disable-line react/prefe
   handleFormSubmit({_root: { entries} }) {
     const [ [, email], [, password] ] = entries;
     console.log(email, password);
-    this.props.onSigninUser({email, password});
-    
+    const isLoggedIn = true;
+    this.props.onSigninUser({ email, password, isLoggedIn});
+
   }
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
@@ -48,29 +49,29 @@ export class Signin extends React.Component { // eslint-disable-line react/prefe
         </Helmet>
         <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
           <fieldset>
-            <Field 
-              name="email" 
-              type="text" 
-              component={renderField} 
+            <Field
+              name="email"
+              type="text"
+              component={renderField}
               label="Email" />
           </fieldset>
           <fieldset>
-            <Field 
-              name="password" 
-              type="password" 
-              component={renderField} 
+            <Field
+              name="password"
+              type="password"
+              component={renderField}
               label="Password" />
           </fieldset>
           <div>
-            <button 
-              type="submit" 
-              disabled={submitting}> 
+            <button
+              type="submit"
+              disabled={submitting}>
               Sign in
               </button>
-            <button 
-              type="button" 
-              disabled={pristine || submitting} 
-              onClick={reset}> 
+            <button
+              type="button"
+              disabled={pristine || submitting}
+              onClick={reset}>
               Clear Values
               </button>
           </div>
@@ -90,7 +91,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onSigninUser: ({ email, password }) => dispatch(signinUser({ email, password })),
+    onSigninUser: ({ email, password, isLoggedIn }) => dispatch(signinUser({ email, password, isLoggedIn })),
   };
 }
 

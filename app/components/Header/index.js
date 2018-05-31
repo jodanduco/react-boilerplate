@@ -1,5 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import A from './A';
 import Img from './Img';
@@ -19,6 +21,9 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
           <HeaderLink to="/signin">
             <FormattedMessage {...messages.signin} />
           </HeaderLink>
+          <HeaderLink to="/signout">
+            <FormattedMessage {...messages.signout} />
+          </HeaderLink>
           <HeaderLink to="/">
             <FormattedMessage {...messages.home} />
           </HeaderLink>
@@ -30,5 +35,19 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     );
   }
 }
+
+/*const mapStateToProps = createStructuredSelector({
+  //signin: makeSelectSignin(),
+});
+
+function mapDispatchToProps(state) {
+  return { signin: state.signin };
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+*/
+/*export default compose(
+  //withConnect,
+)(Header);*/
 
 export default Header;
