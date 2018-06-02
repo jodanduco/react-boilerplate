@@ -21,6 +21,7 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Signin from 'containers/Signin/Loadable';
 import Signout from 'containers/Signout/Loadable';
+import Weather from 'containers/Weather/Loadable';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -47,6 +48,7 @@ class App extends React.Component {
           <Route path="/features" component={FeaturePage} />
           <Route path="/signin" component={Signin} />
           <Route path="/signout" component={Signout} />
+          <Route path="/weather" component={Weather} />
           <Route path="" component={NotFoundPage} />
         </Switch>
         <Footer />
@@ -56,7 +58,6 @@ class App extends React.Component {
 }
 
 function mapStateTopProps(state) {
-  debugger
   return state;
 }
 

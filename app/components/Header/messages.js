@@ -22,4 +22,8 @@ export default defineMessages({
     id: 'boilerplate.components.Header.signout',
     defaultMessage: 'Sign out',
   },
+  weather: {
+    id: 'boilerplate.components.Header.weather',
+    defaultMessage: 'Weather',
+  },
 });
