@@ -40,7 +40,7 @@ Weather.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  weather: makeSelectWeather(),
+  //weather: makeSelectWeather(),
 });
 
 function mapDispatchToProps(dispatch) {

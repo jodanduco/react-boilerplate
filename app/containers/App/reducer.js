@@ -16,6 +16,8 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
+  LOAD_WEATHER_LIST_SUCCESS,
+  LOAD_WEATHER_LIST_ERROR,
 } from './constants';
 
 // The initial state of the App
@@ -44,6 +46,15 @@ function appReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
+    case LOAD_WEATHER_LIST_SUCCESS:
+      return state
+      .setIn(['userData', 'weatherList'], action.weatherList)
+      .set('loading', false)
+      .set('term', action.term);
+    case LOAD_WEATHER_LIST_ERROR:
+      return state
+      .set('error', action.error)
+      .set('loading', false);
     default:
       return state;
   }

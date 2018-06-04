@@ -4,22 +4,20 @@ import { createSelector } from 'reselect';
  * Direct selector to the weather state domain
  */
 const selectWeatherDomain = (state) => state.get('weather');
+const selectSearchBarDomain = (state) => state.get('searchBar');
 
 /**
  * Other specific selectors
  */
 
 
-/**
- * Default selector used by Weather
- */
-
-const makeSelectWeather = () => createSelector(
-  selectWeatherDomain,
-  (substate) => substate.toJS()
+const makeSelectTerm = () => createSelector(
+  selectSearchBarDomain,
+  (searchBarState) => searchBarState.get('term')
 );
 
-export default makeSelectWeather;
 export {
   selectWeatherDomain,
+  //makeSelectWeather,
+  makeSelectTerm,
 };

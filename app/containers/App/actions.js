@@ -19,6 +19,9 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+  LOAD_WEATHER_LIST,
+  LOAD_WEATHER_LIST_SUCCESS,
+  LOAD_WEATHER_LIST_ERROR,
 } from './constants';
 
 /**
@@ -58,6 +61,27 @@ export function reposLoaded(repos, username) {
 export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,
+    error,
+  };
+}
+
+export function loadWeatherList() {
+  return {
+    type: LOAD_WEATHER_LIST,
+  };
+}
+
+export function weatherListLoaded(weatherList, city) {
+  return {
+    type: LOAD_WEATHER_LIST_SUCCESS,
+    weatherList,
+    city,
+  };
+}
+
+export function weatherListLoadingError(error) {
+  return {
+    type: LOAD_WEATHER_LIST_ERROR,
     error,
   };
 }

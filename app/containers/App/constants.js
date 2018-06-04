@@ -12,4 +12,7 @@
 export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+export const LOAD_WEATHER_LIST = 'boilerplate/App/LOAD_WEATHER_LIST';
+export const LOAD_WEATHER_LIST_SUCCESS = 'boilerplate/App/LOAD_WEATHER_LIST_SUCCESS';
+export const LOAD_WEATHER_LIST_ERROR = 'boilerplate/App/LOAD_WEATHER_LIST_ERROR';
 export const DEFAULT_LOCALE = 'en';

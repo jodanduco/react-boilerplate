@@ -19,6 +19,11 @@ const makeSelectSearchBar = () => createSelector(
   (substate) => substate.toJS()
 );
 
+const makeSelectTerm = () => createSelector(
+  selectSearchBarDomain,
+  (substate) => substate.toJS()
+);
+
 export default makeSelectSearchBar;
 export {
   selectSearchBarDomain,

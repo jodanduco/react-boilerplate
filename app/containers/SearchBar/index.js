@@ -14,6 +14,8 @@ import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectSearchBar from './selectors';
+import { changeTerm } from './actions';
+import { loadWeatherList } from '../App/actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -22,10 +24,11 @@ export class SearchBar extends React.Component { // eslint-disable-line react/pr
     return (
       <form onSubmit={this.props.onSubmitForm}>
         <input
+          type="text"
           placeholder="Get a five-day forecast in your favorite cities"
           className="form-control"
-          value=""
-          onChange=""
+
+          onChange={this.props.onChangeTerm}
         />
         <span className="input-group-btn">
           <button type="submit" className="btn btn-secondary">Submit</button>
@@ -36,8 +39,10 @@ export class SearchBar extends React.Component { // eslint-disable-line react/pr
 }
 
 SearchBar.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  //dispatch: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func,
+  onChangeTerm: PropTypes.func,
+  term: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -46,10 +51,13 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
+    onChangeTerm: (evt) => {
+      const newTerm = evt.target.value;
+      dispatch(changeTerm(newTerm));
+    },
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      // dispatch(loadRepos()); dispatch action creator
-      debugger
+      dispatch(loadWeatherList());
     },
   };
 }
