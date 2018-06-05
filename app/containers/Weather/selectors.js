@@ -16,8 +16,13 @@ const makeSelectTerm = () => createSelector(
   (searchBarState) => searchBarState.get('term')
 );
 
+const makeSelectWeatherList = () => createSelector(
+  selectWeatherDomain,
+  (weatherState) => weatherState.get('weatherData')
+);
+
 export {
   selectWeatherDomain,
-  //makeSelectWeather,
   makeSelectTerm,
+  makeSelectWeatherList,
 };

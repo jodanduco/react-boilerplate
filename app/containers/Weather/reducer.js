@@ -12,16 +12,18 @@ import {
 
 const initialState = fromJS({
   city: '',
-  weatherList: [],
+  weatherData: false,
 });
 
 function weatherReducer(state = initialState, action) {
+  debugger
   switch (action.type) {
     case CHANGE_TERM:
       return state.set('city', action.term);
     case LOAD_WEATHER_LIST_SUCCESS:
+      const weatherData = [action.weatherData, ...state.get('weatherData')];
       return state
-        .set('weatherList', action.weatherList);
+        .set('weatherData', weatherData);
     default:
       return state;
   }

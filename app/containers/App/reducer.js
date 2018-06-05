@@ -47,8 +47,9 @@ function appReducer(state = initialState, action) {
         .set('error', action.error)
         .set('loading', false);
     case LOAD_WEATHER_LIST_SUCCESS:
+      const weatherData = [action.weatherData, ...state];
       return state
-      .setIn(['userData', 'weatherList'], action.weatherList)
+      .setIn(['userData', 'weatherData'], weatherData)
       .set('loading', false)
       .set('term', action.term);
     case LOAD_WEATHER_LIST_ERROR:
