@@ -16,7 +16,6 @@ const initialState = fromJS({
 });
 
 function weatherReducer(state = initialState, action) {
-  debugger
   switch (action.type) {
     case CHANGE_TERM:
       return state.set('city', action.term);

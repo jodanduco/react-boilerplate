@@ -31,7 +31,6 @@ export function* getWeatherList() {
       lon,
       lat,
     };
-    debugger
     yield put(weatherListLoaded(weatherData));
   } catch (err) {
     yield put(weatherListLoadingError(err));

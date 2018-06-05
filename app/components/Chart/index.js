@@ -21,7 +21,7 @@ function average(data) {
 
 function Chart(props) {
   return (
-    <div>
+    <div className="chart">
       <Sparklines height={120} width={180} data={props.data}>
         <SparklinesLine color={props.color} />
         <SparklinesReferenceLine type="avg" />
