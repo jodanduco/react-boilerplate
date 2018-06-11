@@ -15,6 +15,7 @@ import WeatherListItem from 'containers/WeatherListItem';
 
 
 function WeatherList({ loading, error, weatherData }) {
+  debugger
   if (loading) {
     return <List component={LoadingIndicator} />;
   }

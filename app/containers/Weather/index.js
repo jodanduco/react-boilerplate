@@ -29,11 +29,13 @@ import { makeSelectWeatherList } from './selectors';
 
 // Components
 import SearchBar from 'containers/SearchBar';
+import ActionsBar from 'containers/ActionsBar';
 
 export class Weather extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { loading, error, weatherData } = this.props;
     const weatherListProps = { loading, error, weatherData };
+    debugger
     return <article>
         <Helmet>
           <title>Weather</title>
@@ -47,6 +49,7 @@ export class Weather extends React.Component { // eslint-disable-line react/pref
           </CenteredSection>
           <Section>
             <SearchBar />
+            <ActionsBar />
             <WeatherList {...weatherListProps} />
           </Section>
         </div>

@@ -15,7 +15,6 @@ function searchBarReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_TERM:
       return state.set('term', action.term);
-    break;
     default:
       return state;
   }

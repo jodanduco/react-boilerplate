@@ -27,12 +27,10 @@ export class SearchBar extends React.Component { // eslint-disable-line react/pr
           type="text"
           placeholder="Get a five-day forecast in your favorite cities"
           className="form-control"
-
           onChange={this.props.onChangeTerm}
         />
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Submit</button>
-        </span>
+        <button type="submit" className="btn btn-secondary">Search</button>
+        <button type="reset" className="btn btn-secondary">Clear</button>
       </form>
     );
   }

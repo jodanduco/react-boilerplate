@@ -10,8 +10,16 @@ import PropTypes from 'prop-types';
 
 
 class GoogleMap extends React.Component {
-  
+
   componentDidMount() {
+    this.buildMapObj();
+  }
+  
+  componentDidUpdate() {
+    this.buildMapObj();
+  }
+  
+  buildMapObj() {
     const htmlElementRef = this.refs.map; // -> To work to third party libraries that not works with react
     new google.maps.Map(htmlElementRef, {
       zoom: 12,
