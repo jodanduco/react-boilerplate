@@ -17,9 +17,9 @@ export function* getWeatherList() {
     const response = yield call(request, requestURL);
     const city = response.city;
     const name = response.city.name;
-    const temps = _.map(response.list.map(weather => weather.main.temp), (temp => temp - 273));
-    const pressures = response.list.map(weather => weather.main.pressure);
-    const humidities = response.list.map(weather => weather.main.humidity);
+    const temps = _.map(response.list.map((weather) => weather.main.temp), ((temp) => temp - 273));
+    const pressures = response.list.map((weather) => weather.main.pressure);
+    const humidities = response.list.map((weather) => weather.main.humidity);
     const { lon, lat } = response.city.coord;
 
     const weatherData = {

@@ -1,6 +1,6 @@
 /**
  *
- * PostsListPage
+ * PostListItem
  *
  */
 
@@ -8,58 +8,52 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectPostsListPage from './selectors';
+import makeSelectPostListItem from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { loadPosts } from './actions';
+import messages from './messages';
 
-export class PostsListPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() {
-    this.props.loadPosts();
-  }
+export class PostListItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
         <Helmet>
-          <title>PostsListPage</title>
-          <meta name="description" content="Description of PostsListPage" />
+          <title>PostListItem</title>
+          <meta name="description" content="Description of PostListItem" />
         </Helmet>
-        <h2>Posts</h2>
+        <FormattedMessage {...messages.header} />
       </div>
     );
   }
 }
 
-PostsListPage.propTypes = {
+PostListItem.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  loadPosts: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  postslistpage: makeSelectPostsListPage(),
+  postlistitem: makeSelectPostListItem(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loadPosts: () => {
-      dispatch(loadPosts());
-    },
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'postsListPage', reducer });
-const withSaga = injectSaga({ key: 'postsListPage', saga });
+const withReducer = injectReducer({ key: 'postListItem', reducer });
+const withSaga = injectSaga({ key: 'postListItem', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(PostsListPage);
+)(PostListItem);

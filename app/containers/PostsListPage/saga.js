@@ -10,19 +10,17 @@ import { postsLoaded } from './actions';
 // import { makeSelectUsername } from 'containers/HomePage/selectors';
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
-const API_KEY = '?key=jodanduco123';
+const API_KEY = '';
+//const API_KEY = '?key=jodanduco123';
 
 /**
  * Github repos request/response handler
  */
 export function* getPosts() {
-  debugger;
   const requestURL = `${ROOT_URL}/posts${API_KEY}`;
-
   try {
     // Call our request helper (see 'utils/request')
     const posts = yield call(request, requestURL);
-    debugger;
     yield put(postsLoaded(posts));
   } catch (err) {
     // yield put(repoLoadingError(err));
@@ -33,6 +31,5 @@ export function* getPosts() {
  * Root saga manages watcher lifecycle
  */
 export default function* postsData() {
-  debugger;
   yield takeLatest(LOAD_POSTS, getPosts);
 }

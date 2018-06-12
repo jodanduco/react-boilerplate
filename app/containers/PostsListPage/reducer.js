@@ -11,19 +11,21 @@ import {
   LOAD_POSTS_SUCCESS,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  posts: [],
+});
 
 function postsListPageReducer(state = initialState, action) {
-  debugger
   switch (action.type) {
     case LOAD_POSTS_SUCCESS: {
-      const postsList = action.payload.posts;
+      const postsList = action.payload;
       const postsListAsObj = _.mapKeys(postsList, 'id');
-      debugger;
-      return state.set('posts', postsListAsObj);
+      return state
+        .set('posts', postsListAsObj)
+        .set('loading', false)
+        .set('error', false);
     }
     case LOAD_POSTS:
-    debugger
       return state
         .set('loading', true)
         .set('error', false);
