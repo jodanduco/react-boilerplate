@@ -26,4 +26,8 @@ export default defineMessages({
     id: 'boilerplate.components.Header.weather',
     defaultMessage: 'Weather',
   },
+  posts: {
+    id: 'boilerplate.components.Header.posts',
+    defaultMessage: 'Posts',
+  },
 });

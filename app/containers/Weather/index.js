@@ -35,7 +35,6 @@ export class Weather extends React.Component { // eslint-disable-line react/pref
   render() {
     const { loading, error, weatherData } = this.props;
     const weatherListProps = { loading, error, weatherData };
-    debugger
     return <article>
         <Helmet>
           <title>Weather</title>
