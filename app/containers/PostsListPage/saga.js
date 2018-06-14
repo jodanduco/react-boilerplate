@@ -10,8 +10,7 @@ import { postsLoaded } from './actions';
 // import { makeSelectUsername } from 'containers/HomePage/selectors';
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
-const API_KEY = '';
-//const API_KEY = '?key=jodanduco123';
+const API_KEY = '?key=jodanduco123';
 
 /**
  * Github repos request/response handler

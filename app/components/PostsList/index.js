@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
-import PostListItem from 'containers/PostsListItem';
+import PostListItem from 'containers/PostListItem';
 
 
 function PostsList({ loading, error, posts }) {
@@ -25,7 +25,7 @@ function PostsList({ loading, error, posts }) {
     return <List component={ErrorComponent} />;
   }
 
-  if (repos !== false) {
+  if (posts !== false) {
     return <List items={posts} component={PostListItem} />;
   }
 

@@ -16,7 +16,7 @@ const selectPostsListPageDomain = (state) => state.get('postsListPage');
 
 const makeSelectPostsListPage = () => createSelector(
   selectPostsListPageDomain,
-  (substate) => substate.toJS()
+  (postsListPageState) => postsListPageState.get('posts')
 );
 
 export default makeSelectPostsListPage;

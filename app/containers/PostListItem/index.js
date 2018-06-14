@@ -7,8 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -17,24 +15,35 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectPostListItem from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
+// Components
+import ListItem from 'components/ListItem';
+import Wrapper from '../RepoListItem/Wrapper';
+import PostLink from './PostLink';
 
 export class PostListItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const item = this.props.item;
+
+    const content = (
+      <Wrapper>
+        <PostLink href=""
+          target="_blank">
+          {item.title}
+        </PostLink>
+        <button>Delete</button>
+        <button>Edit</button>
+        <button>Copy</button>
+      </Wrapper>
+    );
+    // Render the content into a list item
     return (
-      <div>
-        <Helmet>
-          <title>PostListItem</title>
-          <meta name="description" content="Description of PostListItem" />
-        </Helmet>
-        <FormattedMessage {...messages.header} />
-      </div>
+      <ListItem key={`post-list-item-${item.id}`} item={content} />
     );
   }
 }
 
 PostListItem.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  item: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -12,16 +12,16 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  posts: [],
+  posts: false,
 });
 
 function postsListPageReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_POSTS_SUCCESS: {
       const postsList = action.payload;
-      const postsListAsObj = _.mapKeys(postsList, 'id');
+      //const postsListAsObj = _.mapKeys(postsList, 'id');
       return state
-        .set('posts', postsListAsObj)
+        .set('posts', postsList)
         .set('loading', false)
         .set('error', false);
     }
