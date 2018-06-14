@@ -11,7 +11,6 @@ import {
 } from './constants';
 
 export function createPost(postData) {
-  console.log('createPost');
   return {
     type: CREATE_POST,
     payload: postData,

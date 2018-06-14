@@ -19,6 +19,7 @@ import saga from './saga';
 import validate from './validate';
 // Actions
 import { createPost } from './actions';
+import { makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 
 export class PostNewModal extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -44,6 +45,7 @@ export class PostNewModal extends React.Component { // eslint-disable-line react
 
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
+    debugger
     return (
       <div
         className="modal fade"
@@ -135,7 +137,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     onSubmit: (values) => {
-      console.log('onSubmit');
       const postData = {
         title: values.get('title'),
         categories: values.get('categories'),
@@ -143,6 +144,7 @@ function mapDispatchToProps(dispatch) {
       };
       dispatch(createPost(postData));
     },
+    loading: makeSelectLoading(),
   };
 }
 
