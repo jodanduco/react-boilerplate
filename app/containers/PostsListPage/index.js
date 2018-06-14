@@ -18,6 +18,7 @@ import H2 from 'components/H2';
 
 import PostsList from 'components/PostsList';
 import PostNewModal from 'containers/PostNewModal';
+import ConfirmModal from 'containers/ConfirmModal';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectPostsListPage from './selectors';
@@ -25,6 +26,8 @@ import reducer from './reducer';
 import saga from './saga';
 import CenteredSection from './CenteredSection';
 import { loadPosts } from './actions';
+import { showModal } from 'containers/ConfirmModal/actions';
+
 
 // Selectors
 import {
@@ -56,8 +59,15 @@ export class PostsListPage extends React.Component { // eslint-disable-line reac
               className="btn btn-primary"
               data-toggle="modal"
               data-target="#postNewModal">Create
-              </button>
+            </button>
+            <button
+              type="button"
+              onClick={this.props.onShowModal}
+              className="btn btn-primary">
+              Open dialog
+            </button>
             <PostNewModal />
+            <ConfirmModal />
             <PostsList {...postListProps} />
           </Section>
         </div>
@@ -90,6 +100,9 @@ function mapDispatchToProps(dispatch) {
     loadPosts: () => {
       dispatch(loadPosts());
     },
+    onShowModal: () => {
+      dispatch(showModal());
+    }
   };
 }
 

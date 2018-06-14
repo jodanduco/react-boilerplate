@@ -9,6 +9,7 @@ import _ from 'lodash';
 import {
   LOAD_POSTS,
   LOAD_POSTS_SUCCESS,
+  DELETE_POST,
 } from './constants';
 
 const initialState = fromJS({
@@ -29,6 +30,9 @@ function postsListPageReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('error', false);
+    case DELETE_POST:
+      return state
+        .set('postToDelete', action.payload);
     default:
       return state;
   }

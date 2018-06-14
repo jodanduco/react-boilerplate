@@ -19,6 +19,9 @@ import saga from './saga';
 import ListItem from 'components/ListItem';
 import Wrapper from '../RepoListItem/Wrapper';
 import PostLink from './PostLink';
+// Actions
+import { showModal } from 'containers/ConfirmModal/actions';
+import { deletePost } from 'containers/PostsListPage/actions';
 
 export class PostListItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -30,7 +33,7 @@ export class PostListItem extends React.Component { // eslint-disable-line react
           target="_blank">
           {item.title}
         </PostLink>
-        <button>Delete</button>
+        <button onClick={this.props.onDeletePost.bind(this, item)}>Delete</button>
         <button>Edit</button>
         <button>Copy</button>
       </Wrapper>
@@ -44,6 +47,7 @@ export class PostListItem extends React.Component { // eslint-disable-line react
 
 PostListItem.propTypes = {
   item: PropTypes.object,
+  onDeletePost: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -53,6 +57,17 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    onDeletePost: (postToDelete) => {
+      debugger
+      const params = {
+        message: `Confirm delete "${postToDelete.title}" ?`,
+        callbaks: {
+          cancel: null,
+          ok: dispatch(deletePost(postToDelete.id)),
+        },
+      };
+      dispatch(showModal(params));
+    }
   };
 }
 

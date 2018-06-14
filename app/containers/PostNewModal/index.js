@@ -45,7 +45,6 @@ export class PostNewModal extends React.Component { // eslint-disable-line react
 
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
-    debugger
     return (
       <div
         className="modal fade"
@@ -93,6 +92,9 @@ export class PostNewModal extends React.Component { // eslint-disable-line react
                   type="text"
                   component={this.renderField}
                 />
+              </form>
+            </div>
+            <div className="modal-footer">
               <button
                 type="submit"
                 disabled={submitting}
@@ -100,9 +102,6 @@ export class PostNewModal extends React.Component { // eslint-disable-line react
                 className="btn btn-primary">
                 Create
               </button>
-              </form>
-            </div>
-            <div className="modal-footer">
               <button
                 type="button"
                 className="btn btn-secondary"
