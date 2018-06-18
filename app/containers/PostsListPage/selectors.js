@@ -19,7 +19,7 @@ const makeSelectPostsListPage = () => createSelector(
   (postsListPageState) => postsListPageState.get('posts')
 );
 
-const makeSelectPostToDelete= () => createSelector(
+const makeSelectPostToDelete = () => createSelector(
   selectPostsListPageDomain,
   (postsListPageState) => postsListPageState.get('postToDelete')
 );

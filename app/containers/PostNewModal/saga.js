@@ -1,8 +1,10 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { CREATE_POST } from './constants';
 import request from 'utils/request';
+// Actions
 import { loadPosts } from '../PostsListPage/actions';
-import { createPostSuccess } from './actions';
+import { createPostSuccess, hideCreatePostModal } from './actions';
+
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 const API_KEY = '?key=jodanduco123';
@@ -23,8 +25,9 @@ export function* createPost(action) {
   };
   try {
     yield call(request, requestURL, requestParams);
-    yield put(loadPosts());
     yield put(createPostSuccess());
+    yield put(loadPosts());
+    yield put(hideCreatePostModal());
   } catch (error) {
     console.log('error', error);
   }

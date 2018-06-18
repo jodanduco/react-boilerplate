@@ -3,9 +3,17 @@
  */
 
 import request from 'utils/request';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { LOAD_POSTS, DELETE_POST } from './constants';
-import { postsLoaded, deletePost } from './actions';
+// Actions
+import {
+  postsLoaded,
+  deletePostSuccess,
+  deletePostError,
+  loadPosts,
+} from './actions';
+import { hideModal } from 'containers/ConfirmModal/actions';
+// Selectors
 import { makeSelectPostToDelete } from './selectors';
 
 // import { makeSelectUsername } from 'containers/HomePage/selectors';
@@ -19,7 +27,6 @@ const API_KEY = '?key=jodanduco123';
 export function* getPosts() {
   const requestURL = `${ROOT_URL}/posts${API_KEY}`;
   try {
-    // Call our request helper (see 'utils/request')
     const posts = yield call(request, requestURL);
     yield put(postsLoaded(posts));
   } catch (err) {
@@ -28,11 +35,9 @@ export function* getPosts() {
 }
 
 export function* deletePostSaga() {
-  debugger
-  const postToDelete = makeSelectPostToDelete();
-  const requestURL = `${ROOT_URL}/posts${API_KEY}${postToDelete}`;
+  const postToDelete = yield select(makeSelectPostToDelete());
+  const requestURL = `${ROOT_URL}/posts/${postToDelete}/${API_KEY}`;
   try {
-      debugger
     const headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -41,12 +46,14 @@ export function* deletePostSaga() {
       method: 'delete',
       headers,
     };
-    // Call our request helper (see 'utils/request')
-    const response = yield call(request, requestURL, requestParams);
-    debugger
-    //yield put(postsLoaded(posts));
+    yield call(request, requestURL, requestParams);
+    yield put(deletePostSuccess());
+    // Hide confirm  modal
+    yield put(hideModal());
+    // Refresh posts list
+    yield put(loadPosts());
   } catch (err) {
-    // yield put(repoLoadingError(err));
+    yield put(deletePostError(err));
   }
 }
 

@@ -25,8 +25,10 @@ import makeSelectPostsListPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import CenteredSection from './CenteredSection';
+// Actions
 import { loadPosts } from './actions';
 import { showModal } from 'containers/ConfirmModal/actions';
+import { showCreatePostModal } from 'containers/PostNewModal/actions';
 
 
 // Selectors
@@ -57,14 +59,8 @@ export class PostsListPage extends React.Component { // eslint-disable-line reac
             <button
               type="button"
               className="btn btn-primary"
-              data-toggle="modal"
-              data-target="#postNewModal">Create
-            </button>
-            <button
-              type="button"
-              onClick={this.props.onShowModal}
-              className="btn btn-primary">
-              Open dialog
+              onClick={this.props.onCreatePostModal}
+            >Create
             </button>
             <PostNewModal />
             <ConfirmModal />
@@ -86,6 +82,7 @@ PostsListPage.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
+  onCreatePostModal: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -102,7 +99,10 @@ function mapDispatchToProps(dispatch) {
     },
     onShowModal: () => {
       dispatch(showModal());
-    }
+    },
+    onCreatePostModal: () => {
+      dispatch(showCreatePostModal());
+    },
   };
 }
 

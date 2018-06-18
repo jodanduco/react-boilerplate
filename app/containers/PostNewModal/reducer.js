@@ -9,6 +9,8 @@ import {
   CREATE_POST,
   CREATE_POST_SUCCESS,
   CREATE_POST_ERROR,
+  SHOW_NEW_POST_MODAL,
+  HIDE_NEW_POST_MODAL,
 } from './constants';
 
 const initialState = fromJS({});
@@ -26,6 +28,12 @@ function postNewModalReducer(state = initialState, action) {
       return state
         .set('loading', false)
         .set('error', true);
+    case SHOW_NEW_POST_MODAL:
+      return state
+        .set('opened', true);
+    case HIDE_NEW_POST_MODAL:
+      return state
+        .set('opened', false);
     default:
       return state;
   }

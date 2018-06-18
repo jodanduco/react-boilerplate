@@ -19,7 +19,13 @@ const makeSelectPostNewModal = () => createSelector(
   (substate) => substate.toJS()
 );
 
+const selectStatus = () => createSelector(
+  selectPostNewModalDomain,
+  (substate) => substate.get('opened'),
+);
+
 export default makeSelectPostNewModal;
 export {
   selectPostNewModalDomain,
+  selectStatus,
 };

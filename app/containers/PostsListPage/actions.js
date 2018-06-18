@@ -8,6 +8,8 @@ import {
   LOAD_POSTS,
   LOAD_POSTS_SUCCESS,
   DELETE_POST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_ERROR,
 } from './constants';
 
 export function loadPosts() {
@@ -23,9 +25,19 @@ export function postsLoaded(posts) {
 }
 
 export function deletePost(postId) {
-  debugger
   return {
     type: DELETE_POST,
     payload: postId,
+  };
+}
+export function deletePostSuccess() {
+  return {
+    type: DELETE_POST_SUCCESS,
+  };
+}
+export function deletePostError(error) {
+  return {
+    type: DELETE_POST_ERROR,
+    payload: error,
   };
 }

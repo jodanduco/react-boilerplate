@@ -58,12 +58,11 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     onDeletePost: (postToDelete) => {
-      debugger
       const params = {
-        message: `Confirm delete "${postToDelete.title}" ?`,
+        message: `Confirm to delete "${postToDelete.title}" ?`,
         callbaks: {
           cancel: null,
-          ok: dispatch(deletePost(postToDelete.id)),
+          ok: deletePost(postToDelete.id),
         },
       };
       dispatch(showModal(params));
