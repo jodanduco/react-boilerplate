@@ -1,6 +1,8 @@
 import NormalA from 'components/A';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const RepoLink = NormalA.extend`
+const RepoLink = styled(Link)`
   height: 100%;
   color: black;
   display: flex;

@@ -29,11 +29,15 @@ export class PostListItem extends React.Component { // eslint-disable-line react
 
     const content = (
       <Wrapper>
-        <PostLink href=""
-          target="_blank">
+        <PostLink
+          to={`posts/${item.id}`}
+        >
           {item.title}
         </PostLink>
-        <button onClick={this.props.onDeletePost.bind(this, item)}>Delete</button>
+        <button
+          onClick={this.props.onDeletePost.bind(this, item)}>
+          Delete
+        </button>
         <button>Edit</button>
         <button>Copy</button>
       </Wrapper>
