@@ -11,11 +11,11 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  opened: false,
+  isOpened: false,
   config: {
-    type: 'warning',
-    strongText: 'Strong test',
-    text: 'Hello wordl',
+    type: '',
+    strongText: '',
+    text: '',
   }
 });
 
@@ -23,7 +23,8 @@ function alertReducer(state = initialState, action) {
   switch (action.type) {
     case SHOW_ALERT:
       return state
-        .set('alert', action.payload);
+        .set('config', action.payload)
+        .set('isOpened', true);
     case HIDE_ALERT:
       return initialState;
     default:

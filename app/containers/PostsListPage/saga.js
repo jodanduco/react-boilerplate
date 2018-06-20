@@ -12,6 +12,7 @@ import {
   deletePostError,
   loadPosts,
 } from './actions';
+import { showAlert } from 'containers/Alert/actions';
 import { hideModal } from 'containers/ConfirmModal/actions';
 // Selectors
 import { makeSelectPostToDelete } from './selectors';
@@ -50,6 +51,12 @@ export function* deletePostSaga() {
     yield put(deletePostSuccess());
     // Hide confirm  modal
     yield put(hideModal());
+    const alertConfig = {
+      type: 'success',
+      strongText: 'Post',
+      text: 'delated successfully',
+    };
+    yield put((showAlert(alertConfig)));
     // Refresh posts list
     yield put(loadPosts());
   } catch (err) {

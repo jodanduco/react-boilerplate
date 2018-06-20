@@ -11,6 +11,7 @@ import {
   showPostError,
 } from './actions';
 
+import { showAlert } from 'containers/Alert/actions';
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 const API_KEY = '?key=jodanduco123';
 
@@ -20,6 +21,7 @@ export function* getPost() {
   try {   
     const response = yield call(request, requestURL);
     yield put(showPostSuccess(response));
+    yield put(showAlert());
   } catch (error) {
     yield put(showPostError(error));
   }

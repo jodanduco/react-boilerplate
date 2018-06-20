@@ -21,7 +21,7 @@ const makeSelectAlertConfig = () => createSelector(
 
 const makeSelectAlertStatus = () => createSelector(
   selectAlertDomain,
-  (substate) => substate.get('opened')
+  (substate) => substate.get('isOpened')
 );
 
 export {

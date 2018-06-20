@@ -4,6 +4,7 @@ import request from 'utils/request';
 // Actions
 import { loadPosts } from '../PostsListPage/actions';
 import { createPostSuccess, hideCreatePostModal } from './actions';
+import { showAlert } from 'containers/Alert/actions';
 
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
@@ -28,6 +29,12 @@ export function* createPost(action) {
     yield put(createPostSuccess());
     yield put(loadPosts());
     yield put(hideCreatePostModal());
+    const alertConfig = {
+      type: 'success',
+      strongText: 'Post',
+      text: 'created successfully',
+    };
+    yield put((showAlert(alertConfig)));
   } catch (error) {
     console.log('error', error);
   }

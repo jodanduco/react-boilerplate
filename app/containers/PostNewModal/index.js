@@ -67,7 +67,7 @@ export class PostNewModal extends React.Component {
                 type="button"
                 className="close"
                 data-dismiss="modal"
-                onClick={reset}
+                onClick={this.props.onCloseModal}
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>

@@ -24,6 +24,7 @@ import Signout from 'containers/Signout/Loadable';
 import Weather from 'containers/Weather/Loadable';
 import PostsListPage from 'containers/PostsListPage/Loadable';
 import ViewPostPage from 'containers/ViewPostPage/Loadable';
+import Alert from 'containers/Alert';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -45,6 +46,7 @@ class App extends React.Component {
           <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
         <Header />
+        <Alert />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/posts/:id" component={ViewPostPage} />

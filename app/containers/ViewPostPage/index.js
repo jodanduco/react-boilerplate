@@ -20,7 +20,6 @@ import messages from './messages';
 
 // Components
 import LoadingIndicator from 'components/LoadingIndicator';
-import Alert from 'containers/Alert';
 import H1 from 'components/H1';
 import Section from './Section';
 import CenteredSection from './CenteredSection';
@@ -38,11 +37,6 @@ export class ViewPostPage extends React.Component { // eslint-disable-line react
 
   render() {
     const { post, loading } = this.props;
-    const alertConfig = {
-      type: 'warning',
-      strongText: 'Hello',
-      text: 'world',
-    };
 
     if (loading) {
       return <LoadingIndicator />;
@@ -56,7 +50,6 @@ export class ViewPostPage extends React.Component { // eslint-disable-line react
         </Helmet>
         <div>
           <CenteredSection>
-            <Alert config={alertConfig} /> 
             <H1>
               {post.title}
             </H1>

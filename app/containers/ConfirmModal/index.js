@@ -38,6 +38,7 @@ export class ConfirmModal extends React.Component {
                 className="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                onClick={this.props.onCloseModal}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
