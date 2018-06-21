@@ -12,6 +12,7 @@ import {
 
 const initialState = fromJS({
   opened: false,
+  title: '',
   message: '',
   callbaks: {
     ok: {},
@@ -23,6 +24,7 @@ function confirmModalReducer(state = initialState, action) {
   switch (action.type) {
     case SHOW_MODAL:
       return state
+        .set('title', action.payload.title)
         .set('message', action.payload.message)
         .set('callbacks', action.payload.callbaks)
         .set('opened', true);

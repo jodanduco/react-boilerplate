@@ -14,7 +14,10 @@ import Modal from 'react-modal';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 // Selectors
-import { selectStatus, selectMessage, selectCallbacks } from './selectors';
+import { selectStatus,
+  selectMessage,
+  selectCallbacks,
+selectTitle } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 // Actions
@@ -33,6 +36,7 @@ export class ConfirmModal extends React.Component {
         >
           <div className="modal-content">
             <div className="modal-header">
+              <h5 className="modal-title">{this.props.title}</h5>
               <button
                 type="button"
                 className="close"
@@ -42,7 +46,6 @@ export class ConfirmModal extends React.Component {
               >
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h4 className="modal-title">Modal title</h4>
             </div>
             <div className="modal-body">
               <p>{this.props.message}</p>
@@ -78,12 +81,14 @@ ConfirmModal.propTypes = {
   onClickOk: PropTypes.any,
   isOpened: PropTypes.bool,
   message: PropTypes.string,
-  callbaks: PropTypes.any
+  title: PropTypes.string,
+  callbaks: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
   isOpened: selectStatus(),
   message: selectMessage(),
+  title: selectTitle(),
   callbaks: selectCallbacks()
 });
 

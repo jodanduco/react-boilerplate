@@ -16,7 +16,7 @@ const initialState = fromJS({
     type: '',
     strongText: '',
     text: '',
-  }
+  },
 });
 
 function alertReducer(state = initialState, action) {

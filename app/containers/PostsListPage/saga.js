@@ -54,7 +54,7 @@ export function* deletePostSaga() {
     const alertConfig = {
       type: 'success',
       strongText: 'Post',
-      text: 'delated successfully',
+      text: 'successfully delated',
     };
     yield put((showAlert(alertConfig)));
     // Refresh posts list

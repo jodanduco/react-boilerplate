@@ -20,8 +20,8 @@ import reducer from './reducer';
 import saga from './saga';
 import validate from './validate';
 // Actions
+import { makeSelectLoading } from 'containers/App/selectors';
 import { createPost, hideCreatePostModal } from './actions';
-import { makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 
 export class PostNewModal extends React.Component {
   // eslint-disable-line react/prefer-stateless-function

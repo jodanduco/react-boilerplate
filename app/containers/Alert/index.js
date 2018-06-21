@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { makeSelectAlertConfig, makeSelectAlertStatus } from './selectors';
@@ -19,36 +18,50 @@ import saga from './saga';
 import { hideAlert } from './actions';
 
 export class Alert extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  /**
+   * Auto close alert after 5 seg.
+   */
+  autoCloseAlert() {
+    setTimeout(() => {
+      this.props.onCloseAlert();
+    }, 5000);
+  }
+
   render() {
-    debugger
     const alert = this.props.config;
-    if (!alert) return  null;
+    if (alert && !alert.type) return null;
+    if (alert.type === 'success') {
+      this.autoCloseAlert();
+    }
     return (
-        <div
-          className={`alert
-          alert-${alert.type}
-          alert-dismissible
-          fade
-          show`}
-          role="alert">
-          <strong>{alert.strongText}</strong> {alert.text}
-          <button
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            onClick={this.props.onCloseAlert}
-            aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div
+        className={`alert
+        alert-${alert.type}
+        alert-dismissible
+        fade
+        ${this.props.isOpened ? 'show' : 'hide'}`}
+        role="alert"
+      >
+        <strong>{alert.strongText}</strong> {alert.text}
+        <button
+          type="button"
+          className="close"
+          data-dismiss="alert"
+          onClick={this.props.onCloseAlert}
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     );
   }
 }
 
 Alert.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   isOpened: PropTypes.bool,
   onCloseAlert: PropTypes.func,
+  config: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -61,7 +74,7 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     onCloseAlert: () => {
       dispatch(hideAlert());
-    }
+    },
   };
 }
 

@@ -1,10 +1,10 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
-import { CREATE_POST } from './constants';
+import { takeLatest, call, put } from 'redux-saga/effects';
 import request from 'utils/request';
+import { CREATE_POST } from './constants';
 // Actions
-import { loadPosts } from '../PostsListPage/actions';
-import { createPostSuccess, hideCreatePostModal } from './actions';
 import { showAlert } from 'containers/Alert/actions';
+import { createPostSuccess, hideCreatePostModal } from './actions';
+import { loadPosts } from '../PostsListPage/actions';
 
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
@@ -32,11 +32,16 @@ export function* createPost(action) {
     const alertConfig = {
       type: 'success',
       strongText: 'Post',
-      text: 'created successfully',
+      text: 'successfully created.',
     };
     yield put((showAlert(alertConfig)));
   } catch (error) {
-    console.log('error', error);
+    const alertConfig = {
+      type: 'error',
+      strongText: 'Error',
+      text: 'on create post.',
+    };
+    yield put((showAlert(alertConfig)));
   }
 }
 

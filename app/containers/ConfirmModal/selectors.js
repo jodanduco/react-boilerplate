@@ -29,6 +29,11 @@ const selectMessage = () => createSelector(
   (confirmModalState) => confirmModalState.get('message'),
 );
 
+const selectTitle = () => createSelector(
+  selectConfirmModalDomain,
+  (confirmModalState) => confirmModalState.get('title'),
+);
+
 const selectCallbacks = () => createSelector(
   selectConfirmModalDomain,
   (confirmModalState) => confirmModalState.get('callbacks'),
@@ -40,4 +45,5 @@ export {
   selectStatus,
   selectMessage,
   selectCallbacks,
+  selectTitle,
 };
