@@ -35,11 +35,12 @@ export class PostListItem extends React.Component { // eslint-disable-line react
           {item.title}
         </PostLink>
         <button
-          onClick={this.props.onDeletePost.bind(this, item)}>
+          aria-label="Delete a post"
+          onClick={this.props.onDeletePost.bind(this, item)}
+        >
           Delete
         </button>
-        <button>Edit</button>
-        <button>Copy</button>
+        <button aria-label="View a post">View</button>
       </Wrapper>
     );
     // Render the content into a list item

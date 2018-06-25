@@ -32,11 +32,17 @@ export class ConfirmModal extends React.Component {
         <Modal
           isOpen={this.props.isOpened}
           onRequestClose={this.props.onCloseModal}
+          aria-labelledby="confirmModalLabel"
           className="modal-dialog"
         >
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">{this.props.title}</h5>
+              <h5
+                aria-labelledby="confirmModalLabel"
+                className="modal-title"
+              >
+                {this.props.title}
+              </h5>
               <button
                 type="button"
                 className="close"

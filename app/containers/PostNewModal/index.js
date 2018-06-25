@@ -33,8 +33,11 @@ export class PostNewModal extends React.Component {
     const className = `form-group ${touched && error ? 'has-danger' : ''}`;
     return (
       <div className={className}>
-        <label>{field.label}:</label>
+        <label htmlFor={field.input.name}>
+          {field.label}:
+        </label>
         <input
+          id={field.input.name}
           className="form-control"
           type="text"
           {...field.input} // ---> onChange={field.input.onChange}, onChange={field.input.onBlur}, etc
@@ -55,12 +58,15 @@ export class PostNewModal extends React.Component {
           id="postNewModal"
           tabIndex="-1"
           role="dialog"
-          aria-labelledby="exampleModalLabel"
+          aria-labelledby="postNewModalLabel"
           aria-hidden="true"
         >
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
+              <h5
+                className="modal-title"
+                id="postNewModalLabel"
+              >
                 Create a new post.
               </h5>
               <button
@@ -76,6 +82,7 @@ export class PostNewModal extends React.Component {
             <div className="modal-body">
               <form
                 id="createNewPostForm"
+                role="form"
                 onSubmit={handleSubmit(this.props.onSubmit.bind(this))}
               >
                 <Field

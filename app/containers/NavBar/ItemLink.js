@@ -22,4 +22,8 @@ export default styled(Link)`
     background: #41ADDD;
     color: #FFF;
   }
+  &.current {
+    background: #41ADDD;
+    color: #FFF;
+  }
 `;

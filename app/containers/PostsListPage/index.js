@@ -58,6 +58,7 @@ export class PostsListPage extends React.Component { // eslint-disable-line reac
           <Section>
             <button
               type="button"
+              aria-label="Create a post"
               className="btn btn-primary"
               onClick={this.props.onCreatePostModal}
             >Create
