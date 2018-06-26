@@ -17,7 +17,7 @@ const selectRouteDomain = (state) => state.get('route');
 
 const makeSelectLocation = () => createSelector(
   selectRouteDomain,
-  (substate) => substate.get('location')
+  (substate) => substate.get('location').get('pathname')
 );
 
 export default makeSelectLocation;

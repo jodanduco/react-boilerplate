@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -18,74 +17,45 @@ import makeSelectLocation from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+// Actions
+import { selectTab } from './actions';
 
 import NavBarContainer from './NavBarContainer';
 import ItemLink from './ItemLink';
 
 export class NavBar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   isSelected(route) {
-    const curretnPathname = this.props.location.get('pathname');
+    const curretnPathname = this.props.location;
     return curretnPathname === route ? 'current' : '';
   }
+  buildItemLink(item) {
+    return (
+      <ItemLink
+        to={item.route}
+        role="tab"
+        aria-selected="false"
+        onClick={this.props.onSelectTab.bind(this, item.route)}
+        className={this.isSelected(item.route)}
+      >
+        <FormattedMessage {...item} />
+      </ItemLink>
+    );
+  }
+
   render() {
+    const items = Object.values(messages);
+    const itemsLink = items.map((item) => this.buildItemLink(item));
     return (
       <NavBarContainer>
-        <ItemLink
-          to={messages.signin.route}
-          role="tab"
-          aria-selected="false"
-          className={this.isSelected(messages.signin.route)}
-        >
-          <FormattedMessage {...messages.signin} />
-        </ItemLink>
-        <ItemLink
-          to={messages.signout.route}
-          role="tab"
-          aria-selected="false"
-          className={this.isSelected(messages.signout.route)}
-        >
-          <FormattedMessage {...messages.signout} />
-        </ItemLink>
-        <ItemLink
-          to={messages.home.route}
-          role="tab"
-          aria-selected="true"
-          className={this.isSelected(messages.home.route)}
-        >
-          <FormattedMessage {...messages.home} />
-        </ItemLink>
-        <ItemLink
-          to={messages.features.route} 
-          role="tab" 
-          aria-selected="false"
-          className={this.isSelected(messages.features.route)}
-        >
-          <FormattedMessage {...messages.features} />
-        </ItemLink>
-        <ItemLink
-          to={messages.weather.route}
-          role="tab"
-          aria-selected="false"
-          className={this.isSelected(messages.weather.route)}
-        >
-          <FormattedMessage {...messages.weather} />
-        </ItemLink>
-        <ItemLink
-          to={messages.posts.route}
-          role="tab"
-          aria-selected="false"
-          className={this.isSelected(messages.posts.route)}
-        >
-          <FormattedMessage {...messages.posts} />
-        </ItemLink>
+        {itemsLink}
       </NavBarContainer>
     );
   }
 }
 
 NavBar.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  location: PropTypes.object,
+  location: PropTypes.string,
+  onSelectTab: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -95,6 +65,10 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    onSelectTab: (selectedTab) => {
+      debugger;
+      dispatch(selectTab(selectedTab));
+    },
   };
 }
 

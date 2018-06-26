@@ -1,18 +1,18 @@
 
 import {
-  defaultAction,
+  selectTab,
 } from '../actions';
 import {
-  DEFAULT_ACTION,
+  SELECT_TAB,
 } from '../constants';
 
 describe('NavBar actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('selectTab', () => {
+    it('should return the correct constant', () => {
       const expected = {
-        type: DEFAULT_ACTION,
+        type: SELECT_TAB,
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(selectTab()).toEqual(expected);
     });
   });
 });

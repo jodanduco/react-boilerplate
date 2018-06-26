@@ -5,11 +5,12 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  SELECT_TAB,
 } from './constants';
 
-export function defaultAction() {
+export function selectTab(selectedTab) {
   return {
-    type: DEFAULT_ACTION,
+    type: SELECT_TAB,
+    payload: selectedTab,
   };
 }

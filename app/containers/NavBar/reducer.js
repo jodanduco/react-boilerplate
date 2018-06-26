@@ -6,15 +6,17 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  SELECT_TAB,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  selectedTab: '/',
+});
 
 function navBarReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case SELECT_TAB:
+      return state.set('selectedTab', action.payload);
     default:
       return state;
   }

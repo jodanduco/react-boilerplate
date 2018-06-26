@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/NavBar/DEFAULT_ACTION';
+export const SELECT_TAB = 'app/NavBar/SELECT_TAB';

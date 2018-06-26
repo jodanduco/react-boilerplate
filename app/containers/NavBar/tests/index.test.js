@@ -1,10 +1,18 @@
-// import React from 'react';
-// import { shallow } from 'enzyme';
-
-// import { NavBar } from '../index';
+import React from 'react';
+import { shallow } from 'enzyme';
+import { NavBar } from '../index';
 
 describe('<NavBar />', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('should render a render a NavBarContainer', () => {
+    const renderedComponent = shallow(
+      <NavBar />
+    );
+    expect(renderedComponent.find('NavBarContainer').length).toEqual(1);
+  });
+  it('should render at least one ItemLink', () => {
+    const renderedComponent = shallow(
+      <NavBar />
+    );
+    expect(renderedComponent.find('ItemLink').length).toBeGreaterThan(0);
   });
 });
