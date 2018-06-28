@@ -7,38 +7,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+//import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLocation from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-// Actions
-import { selectTab } from './actions';
-
 import NavBarContainer from './NavBarContainer';
-import ItemLink from './ItemLink';
+import NavTabItem from 'containers/NavTabItem';
 
 export class NavBar extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  isSelected(route) {
-    const curretnPathname = this.props.location;
-    return curretnPathname === route ? 'current' : '';
-  }
   buildItemLink(item) {
     return (
-      <ItemLink
-        to={item.route}
-        role="tab"
-        aria-selected="false"
-        onClick={this.props.onSelectTab.bind(this, item.route)}
-        className={this.isSelected(item.route)}
-      >
-        <FormattedMessage {...item} />
-      </ItemLink>
+      <NavTabItem
+        key={item.id}
+        route={item.route}
+        name={item.defaultMessage}
+      />
     );
   }
 
@@ -54,21 +42,16 @@ export class NavBar extends React.Component { // eslint-disable-line react/prefe
 }
 
 NavBar.propTypes = {
-  location: PropTypes.string,
   onSelectTab: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  location: makeSelectLocation(),
+  // location: makeSelectLocation(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    onSelectTab: (selectedTab) => {
-      debugger;
-      dispatch(selectTab(selectedTab));
-    },
   };
 }
 

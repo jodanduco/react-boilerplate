@@ -1,18 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { NavBar } from '../index';
+import NavBarContainer from '../NavBarContainer';
 
 describe('<NavBar />', () => {
-  it('should render a render a NavBarContainer', () => {
-    const renderedComponent = shallow(
-      <NavBar />
-    );
-    expect(renderedComponent.find('NavBarContainer').length).toEqual(1);
+  let renderedComponent;
+  beforeEach(() => {
+    renderedComponent = shallow(<NavBar />);
   });
-  it('should render at least one ItemLink', () => {
-    const renderedComponent = shallow(
-      <NavBar />
-    );
-    expect(renderedComponent.find('ItemLink').length).toBeGreaterThan(0);
+
+  it('should have one container', () => {
+    const container = renderedComponent.find(NavBarContainer).node;
+    expect(container).toBeDefined();
   });
 });
